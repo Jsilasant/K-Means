@@ -31,3 +31,22 @@ def jaccard(a, b):
     U = len(union)
     return round(1 - (float(I) / U), 4)
 
+import pandas as pd
+
+# Import data (currently local file)
+csv_file = 'C:\\Users\\jonny\\Desktop\\Health-News-Tweets\\Health-Tweets\\usnewshealth.txt'
+headers = ['ID','Timestamp', 'Tweets']
+df = pd.read_csv(csv_file, sep='|', dtype=str, header=None, names=headers)
+
+# Preprocess data
+
+# Remove id and timestamp column
+df = df.drop(labels=['ID','Timestamp'], axis=1)
+
+# Remove any word that starts with the symbol @
+# Remove any hashtag symbols
+# Remove any URL
+# Convert every word to lowercase
+for i in df.index:
+    temp = df.at[i, 'Tweets']
+    df.at[i, 'Tweets'] = preprocess(temp)
