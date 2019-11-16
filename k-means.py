@@ -5,9 +5,9 @@ import numpy as np
 from sklearn.cluster import KMeans, MiniBatchKMeans
 
 def preprocess(s):
-    preprocessed_s = re.sub('#', '', s.lower())
+    preprocessed_s = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', ' ', s.lower())
+    preprocessed_s = re.sub('[#$-_.&+!*\(\),\'\"]', '', preprocessed_s)
     preprocessed_s = re.sub(r'(?:@[\w_]+)', '', preprocessed_s)
-    preprocessed_s = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', '', preprocessed_s)
     return preprocessed_s
 
 def jaccard(a, b):
