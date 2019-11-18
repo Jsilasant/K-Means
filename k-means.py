@@ -49,6 +49,7 @@ def SSE(cluster, centroids, terms_all, l, k):
         for j in range(len(indices1[i])):
             sum = sum + math.pow(jaccard(t[j], cen_txt[i]), 2)
     print('SSE', sum, file=f)
+    
 
 def kmeans(id, centroids, terms_all, l, k):
     count = 0 
@@ -73,6 +74,7 @@ def kmeans(id, centroids, terms_all, l, k):
     
     output(cluster, k, id)
     SSE(cluster, centroids, terms_all, k , l)
+    print('number of k = ', k, file=f)
     f.close()
 
 def update(id, cluster, terms_all, l, k):
@@ -97,7 +99,7 @@ def output(cluster, k, id):
     for i in range(k):
         final.append([j for j, u in enumerate(cluster) if u == i])
         t = [x for x in final[i]]
-        print(i + 1, len([id[x] for x in t]) , file = f)
+        print(i + 1, ', size of cluster: ', len([id[x] for x in t]) , file = f)
 
 
 terms_all = []
@@ -117,5 +119,5 @@ for line in n.readlines():
 l=len(terms_all)
 f = open('output.txt', 'w')
 #the integer value that is currently after l can be changed to the number of centroids that you would want to run.
-#Up to
+#Up to 25
 kmeans(id,centroids,terms_all,l,25)
