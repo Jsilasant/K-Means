@@ -4,6 +4,10 @@
 # Fall 2019
 #
 # Usage: kmeans-tweets.py N_CLUSTERS SEED FILE
+# Example: 
+#	kmeans-tweets.py 5 123 data.txt
+#	will return a K-means with 5 clusters, seed 123 for random.seed(),
+#	and data.txt as the file for tweets
 
 import sys
 import re
