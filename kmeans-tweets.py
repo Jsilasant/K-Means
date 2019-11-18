@@ -120,7 +120,7 @@ def main():
     try:
         k = int(sys.argv[1])
         seed = int(sys.argv[2])
-    except TypeError:
+    except ValueError:
         print('K and seed must be an integer.')
         sys.exit(1)
 
